@@ -1,0 +1,53 @@
+﻿@model CategorySellerBook;
+
+<form asp-action="Update" method="post">
+    <input asp-for="Id" hidden />
+    <div class="mb-3">
+            <label class="form-label">Kitap Adı</label>
+            <input type="text"
+                   class="form-control" asp-for="Name" >
+        </div>
+    <div class="mb-3">
+        <label class="form-label">Yazar Adı</label>
+        <input type="text"
+               class="form-control" asp-for="AuthorName" >
+    </div>
+    <div class="">
+        <label class="form-label">Kitap Kategorisi</label>
+        <select class="form-control js-example-basic-multiple" asp-for="CategoryIds" multiple="multiple">
+            @foreach (var kategori in ViewBag.categories)
+            {
+                <option value="@kategori.Id">@kategori.Name</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Kitap ücreti</label>
+        <input type="number"
+               class="form-control" asp-for="Price" >
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Kitap resmi</label>
+        <input type="text"
+               class="form-control" asp-for="ImgUrl" >
+    </div>
+    <div class="">
+        <label class="form-label">Kitap Satıcısı</label>
+        <select class="form-control js-example-basic-multiple" asp-for="SellerIds" multiple="multiple">
+            @foreach (var satici in ViewBag.sellers)
+            {
+                <option value="@satici.Id">@satici.Name</option>
+            }
+        </select>
+    </div>
+    <button asp-action="update" type="submit" class="btn btn-primary">Güncelle</button>
+</form>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+}

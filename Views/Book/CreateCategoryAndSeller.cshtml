@@ -1,0 +1,27 @@
+﻿@model BookAndCategoryAndSeller;
+
+<div class="col-6">
+    <form asp-action="CreateCategory" method="post">
+        <input asp-for="Category.Id" hidden />
+        <div class="mb-3">
+            <label class="form-label">Category Adı</label>
+            <input type="text"
+                   class="form-control" asp-for="Category.Name">
+            <button type="submit" class="btn btn-primary">Ekle</button>
+        </div>
+    </form>
+
+    <form asp-action="CreateSeller" method="post">
+        <input asp-for="Seller.Id" hidden />
+        <div class="mb-3">
+            <label class="form-label">Satıcı Adı</label>
+            <input type="text"
+                   class="form-control" asp-for="Seller.Name">
+            <label class="form-label">Satıcı Puan</label>
+            <input type="text"
+                   class="form-control" asp-for="Seller.StarRate">
+            <button type="submit" class="btn btn-primary">Ekle</button>
+        </div>
+    </form>
+
+</div>

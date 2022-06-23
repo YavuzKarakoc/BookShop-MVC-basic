@@ -1,0 +1,52 @@
+﻿@model SaveCommentViewModel;
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4" style="display:flex; justify-content:center;">
+                <img src=@ViewBag.Book.ImgUrl style="height:500px; width:400px;" class="card-img-top" alt="...">
+            </div>
+
+            <div class="col-8">
+                <div>
+                    <h4 class="card-title">Kitap Adı : @ViewBag.Book.Name</h4>
+                    <h5 class="card-text">Yazar Adı : @ViewBag.Book.AuthorName</h5>
+                    @foreach (var kategori in ViewBag.Categories)
+                    {
+                        <h6 class="card-text">Türü : @kategori.Name </h6>
+                    }
+                    @foreach (var satici in ViewBag.Sellers)
+                    {
+                        <h6 class="card-text">Satıcı : @satici.Name </h6>
+                    }
+                    <h3 class="card-title">Fiyatı :@ViewBag.Book.Price TL</h3>
+                </div>
+                <div>
+                    <div class="form-floating">
+                        <h4>Yorumlar</h4>
+                        <form asp-action="SaveComment">
+                            <input asp-for="BookId" value="@ViewBag.Book.Id" hidden />
+                            <input type="text" class="form-control" style="width:500px; height:35px;" name="Comment">
+
+                            <input type="submit" name="name" value="Ekle" />
+                        </form>
+                        <ul class="list-group">
+                            @foreach (var yorum in ViewBag.Book.Comments)
+                            {
+                                <li class="list-group-item" style="width:500px">
+                                    @yorum.text
+                                <form>
+                                    <input name="Id" value="@yorum.Id" hidden />
+                                    <button asp-action="CommentDelete"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            </li>
+                        }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
